@@ -1,0 +1,3492 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm Tra Tiếng Anh A2</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap");
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --card2: #243047;
+        --accent: #38bdf8;
+        --accent2: #f472b6;
+        --green: #4ade80;
+        --red: #f87171;
+        --yellow: #fbbf24;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: #334155;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Nunito", sans-serif;
+        min-height: 100vh;
+        padding: 20px 16px 40px;
+      }
+      h1 {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.9rem;
+        font-weight: 800;
+        text-align: center;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 4px;
+      }
+      .subtitle {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+
+      /* MAIN NAV */
+      .main-nav {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .main-tab {
+        font-family: "Baloo 2", cursive;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 10px 28px;
+        border-radius: 99px;
+        border: 1.5px solid var(--border);
+        cursor: pointer;
+        background: var(--card2);
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .main-tab.active {
+        background: linear-gradient(135deg, var(--accent), #0ea5e9);
+        color: #0f172a;
+        border-color: transparent;
+      }
+      .main-tab:hover:not(.active) {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .set-tabs {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .set-tab {
+        font-family: "Baloo 2", cursive;
+        font-weight: 700;
+        font-size: 0.88rem;
+        padding: 8px 20px;
+        border-radius: 99px;
+        border: 1.5px solid var(--border);
+        cursor: pointer;
+        background: var(--card2);
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .set-tab.active {
+        background: linear-gradient(135deg, var(--accent), #0ea5e9);
+        color: #0f172a;
+        border-color: transparent;
+      }
+      .set-tab:hover:not(.active) {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .badge {
+        font-size: 0.7rem;
+        background: #334155;
+        border-radius: 99px;
+        padding: 1px 7px;
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+      .set-tab.active .badge {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .sticky-bar {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background: var(--bg);
+        padding: 10px 0 12px;
+        margin-bottom: 8px;
+      }
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .timer {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 2px;
+        transition: color 0.3s;
+      }
+      .timer.warn {
+        color: var(--yellow);
+      }
+      .timer.danger {
+        color: var(--red);
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .score-live {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .progress-track {
+        width: 100%;
+        height: 6px;
+        background: var(--border);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 99px;
+        transition: width 0.4s ease;
+        width: 0%;
+      }
+      .section-label {
+        font-family: "Baloo 2", cursive;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin: 24px 0 10px;
+        padding-left: 4px;
+      }
+      .q-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-bottom: 12px;
+        transition: border-color 0.2s;
+      }
+      .q-card:hover {
+        border-color: #4b6080;
+      }
+      .q-num {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .q-text {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+      .opts {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .opt-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 13px;
+        border-radius: 9px;
+        border: 1.5px solid var(--border);
+        cursor: pointer;
+        font-size: 0.93rem;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .opt-label:hover {
+        background: #243047;
+        border-color: var(--accent);
+      }
+      .opt-label input {
+        display: none;
+      }
+      .opt-label.selected {
+        background: #1e3a5f;
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .opt-label.correct {
+        background: #14321f;
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .opt-label.wrong {
+        background: #3a1a1a;
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .opt-letter {
+        font-family: "Baloo 2", cursive;
+        font-weight: 700;
+        font-size: 0.9rem;
+        min-width: 22px;
+        text-align: center;
+        opacity: 0.7;
+      }
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+      button {
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 12px 28px;
+        border-radius: 99px;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          opacity 0.15s;
+      }
+      button:active {
+        transform: scale(0.96);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #0ea5e9);
+        color: #0f172a;
+      }
+      .btn-secondary {
+        background: var(--card2);
+        color: var(--text);
+        border: 1.5px solid var(--border);
+      }
+      #result-screen {
+        display: none;
+        text-align: center;
+        padding: 30px 10px;
+      }
+      .big-score {
+        font-family: "Baloo 2", cursive;
+        font-size: 5rem;
+        font-weight: 800;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .result-label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px 0 6px;
+      }
+      .result-sub {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+      }
+      .stat-row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .stat-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 22px;
+        min-width: 100px;
+      }
+      .stat-box .val {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.8rem;
+        font-weight: 800;
+      }
+      .stat-box .lbl {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .correct-val {
+        color: var(--green);
+      }
+      .wrong-val {
+        color: var(--red);
+      }
+      .time-val {
+        color: var(--yellow);
+      }
+      #review {
+        margin-top: 32px;
+        text-align: left;
+      }
+      .review-title {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .review-item {
+        background: var(--card);
+        border-left: 3px solid var(--border);
+        border-radius: 0 10px 10px 0;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+      .review-item.ok {
+        border-left-color: var(--green);
+      }
+      .review-item.err {
+        border-left-color: var(--red);
+      }
+      .review-item .ri-q {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .review-item .ri-your {
+        color: var(--red);
+      }
+      .review-item .ri-correct {
+        color: var(--green);
+      }
+      .difficulty-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 99px;
+        margin-bottom: 14px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .diff-1 {
+        background: #14321f;
+        color: var(--green);
+      }
+      .diff-2 {
+        background: #3a2a10;
+        color: var(--yellow);
+      }
+      .diff-3 {
+        background: #3a1a2a;
+        color: var(--accent2);
+      }
+      .diff-4 {
+        background: #1a2a3a;
+        color: var(--accent);
+      }
+      .diff-5 {
+        background: #2a1a3a;
+        color: #c084fc;
+      }
+      .diff-6 {
+        background: #1a3a2a;
+        color: #4ade80;
+      }
+      .diff-7 {
+        background: #3a1a1a;
+        color: #f87171;
+      }
+        .diff-8 {
+          background: #1a1a3a;
+          color: #f472b6;
+        }
+        .diff-9 {
+          background: #3a3a1a;
+          color: #38bdf8;
+        } 
+
+      /* ===== LÝ THUYẾT ===== */
+      #theory-screen {
+        display: none;
+      }
+      .theory-nav {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 22px;
+      }
+      .theory-tab {
+        font-family: "Baloo 2", cursive;
+        font-weight: 700;
+        font-size: 0.8rem;
+        padding: 7px 14px;
+        border-radius: 99px;
+        border: 1.5px solid var(--border);
+        cursor: pointer;
+        background: var(--card2);
+        color: var(--muted);
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .theory-tab.active {
+        background: linear-gradient(135deg, var(--accent2), #e879f9);
+        color: #0f172a;
+        border-color: transparent;
+      }
+      .theory-tab:hover:not(.active) {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+      .theory-content {
+        display: none;
+      }
+      .theory-content.visible {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .theory-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+      .theory-card-title {
+        font-family: "Baloo 2", cursive;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--accent);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .grammar-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.88rem;
+      }
+      .grammar-table th {
+        background: #1a3a5c;
+        color: var(--accent);
+        padding: 9px 12px;
+        text-align: left;
+        font-weight: 700;
+        font-family: "Baloo 2", cursive;
+        border: 1px solid var(--border);
+        font-size: 0.82rem;
+        letter-spacing: 0.5px;
+      }
+      .grammar-table td {
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        color: var(--text);
+        vertical-align: top;
+        line-height: 1.5;
+      }
+      .grammar-table tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .grammar-table .formula {
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: var(--yellow);
+        font-weight: 600;
+      }
+      .grammar-table .label-cell {
+        font-weight: 700;
+        color: var(--accent2);
+        font-family: "Baloo 2", cursive;
+        white-space: nowrap;
+      }
+      .usage-list {
+        margin: 10px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .usage-list li {
+        padding: 6px 10px 6px 0;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        font-size: 0.9rem;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .usage-list li:last-child {
+        border-bottom: none;
+      }
+      .usage-list li::before {
+        content: "▸";
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .signal-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .signal-chip {
+        background: #1a3a5c;
+        color: var(--accent);
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-family: monospace;
+        border: 1px solid #2a5080;
+      }
+      .signal-chip.pink {
+        background: #3a1a3a;
+        color: var(--accent2);
+        border-color: #5a2a5a;
+      }
+      .signal-chip.green {
+        background: #14321f;
+        color: var(--green);
+        border-color: #2a5a3a;
+      }
+      .signal-chip.yellow {
+        background: #3a2a10;
+        color: var(--yellow);
+        border-color: #5a4a2a;
+      }
+      .sub-title {
+        font-family: "Baloo 2", cursive;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--accent2);
+        margin: 16px 0 8px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .irreg-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        margin-top: 8px;
+      }
+      .irreg-table th {
+        background: #2a1a3a;
+        color: var(--accent2);
+        padding: 8px 10px;
+        text-align: left;
+        border: 1px solid var(--border);
+        font-family: "Baloo 2", cursive;
+      }
+      .irreg-table td {
+        padding: 7px 10px;
+        border: 1px solid var(--border);
+        font-family: monospace;
+      }
+      .irreg-table tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .example-box {
+        background: rgba(56, 189, 248, 0.06);
+        border-left: 3px solid var(--accent);
+        border-radius: 0 8px 8px 0;
+        padding: 10px 14px;
+        margin-top: 10px;
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+      .example-box strong {
+        color: var(--accent);
+      }
+      .conn-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+      .conn-chip {
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.82rem;
+        font-family: monospace;
+        color: var(--text);
+      }
+      .note-box {
+        background: rgba(251, 191, 36, 0.08);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: var(--yellow);
+      }
+      .note-box strong {
+        color: var(--yellow);
+      }
+      .theory-search {
+        width: 100%;
+        max-width: 420px;
+        display: block;
+        margin: 0 auto 20px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 99px;
+        padding: 10px 20px;
+        color: var(--text);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .theory-search:focus {
+        border-color: var(--accent);
+      }
+      .theory-search::placeholder {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>📝 Kiểm Tra Tiếng Anh A2</h1>
+    <p class="subtitle">30 câu · 30 phút · Trắc nghiệm</p>
+
+    <div class="main-nav">
+      <div class="main-tab active" id="nav-test" onclick="switchMain('test')">
+        📝 Làm Bài Kiểm Tra
+      </div>
+      <div class="main-tab" id="nav-theory" onclick="switchMain('theory')">
+        📚 Lý Thuyết Ngữ Pháp
+      </div>
+    </div>
+
+    <!-- TEST WRAPPER -->
+    <div id="test-wrapper">
+      <div id="set-selector">
+        <div class="set-tabs">
+          <div class="set-tab active" onclick="selectSet(0)">
+            Đề 1 <span class="badge">Cơ bản</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(1)">
+            Đề 2 <span class="badge">Nâng cao</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(2)">
+            Đề 3 <span class="badge">Khó hơn</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(3)">
+            Đề 4 <span class="badge">Nâng cao+</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(4)">
+            Đề 5 <span class="badge">Thử thách</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(5)">
+            Đề 6 <span class="badge">Chuyên Sâu</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(6)">
+            Đề 7 <span class="badge">Siêu Khó</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(7)">
+            Đề 8 <span class="badge">Mẹo & Bẫy</span>
+          </div>
+          <div class="set-tab" onclick="selectSet(8)">
+            Đề 9 <span class="badge">Tổng Hợp</span>
+          </div>
+        </div>
+      </div>
+      <div id="test-screen">
+        <div class="sticky-bar">
+          <div class="meta-row">
+            <div class="timer" id="timer">30:00</div>
+            <div class="score-live" id="answered-count">Đã trả lời: 0 / 30</div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+        <div id="questions-container"></div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="submitTest()">🎯 Nộp Bài</button>
+          <button class="btn-secondary" onclick="clearAnswers()">
+            🔄 Xóa Đáp Án
+          </button>
+        </div>
+      </div>
+      <div id="result-screen">
+        <div id="diff-badge" class="difficulty-badge diff-1"></div>
+        <div class="big-score" id="big-score">0/30</div>
+        <div class="result-label" id="result-label">Kết quả</div>
+        <div class="result-sub" id="result-sub"></div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="val correct-val" id="r-correct">0</div>
+            <div class="lbl">Đúng</div>
+          </div>
+          <div class="stat-box">
+            <div class="val wrong-val" id="r-wrong">0</div>
+            <div class="lbl">Sai / Bỏ</div>
+          </div>
+          <div class="stat-box">
+            <div class="val time-val" id="r-time">--:--</div>
+            <div class="lbl">Thời gian</div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="retryTest()">🔁 Làm Lại</button>
+          <button class="btn-secondary" onclick="toggleReview()">
+            🔍 Xem Đáp Án
+          </button>
+        </div>
+        <div id="review" style="display: none">
+          <div class="review-title">Chi tiết đáp án</div>
+          <div id="review-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEORY SCREEN -->
+    <div id="theory-screen">
+      <input
+        class="theory-search"
+        type="text"
+        placeholder="🔍 Tìm chủ đề... (vd: so sánh, bị động, giới từ)"
+        oninput="searchTheory(this.value)"
+      />
+      <div class="theory-nav">
+        <div class="theory-tab active" onclick="showTheory('t-hientaison')">
+          Hiện Tại Đơn
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-quakhuson')">
+          Quá Khứ Đơn
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-tuonglai')">
+          Tương Lai
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-hientaitiepd')">
+          HT Tiếp Diễn
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-quakhutiepd')">
+          QK Tiếp Diễn
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-hientaihoanth')">
+          HT Hoàn Thành
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-quakhuhoanth')">
+          QK Hoàn Thành
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-dieukien')">
+          Câu Điều Kiện
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-cauhoiduoi')">
+          Câu Hỏi Đuôi
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-dangdongtu')">
+          Dạng Động Từ
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-giotu')">Giới Từ</div>
+        <div class="theory-tab" onclick="showTheory('t-sosanh')">
+          Câu So Sánh
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-loaitu')">Loại Từ</div>
+        <div class="theory-tab" onclick="showTheory('t-menhde')">
+          Mệnh Đề QH
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-biddong')">
+          Câu Bị Động
+        </div>
+        <div class="theory-tab" onclick="showTheory('t-lientu')">Liên Từ</div>
+      </div>
+
+      <!-- Hiện Tại Đơn -->
+      <div class="theory-content visible" id="t-hientaison">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Hiện Tại Đơn (Simple Present)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại</th>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="label-cell">TO BE</td>
+              <td class="formula">S + AM/IS/ARE</td>
+              <td class="formula">S + AM/IS/ARE + NOT</td>
+              <td class="formula">AM/IS/ARE + S + ...?</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Động từ thường</td>
+              <td class="formula">S + V(s/es)</td>
+              <td class="formula">S + DO/DOES + NOT + V</td>
+              <td class="formula">DO/DOES + S + V?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>Diễn tả thói quen, hành động xảy ra thường xuyên ở hiện tại</li>
+            <li>Sự việc, sự vật hiển nhiên đúng (sự thật khoa học)</li>
+            <li>Lịch trình cố định, suy nghĩ, cảm xúc, cảm giác</li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">always</span
+            ><span class="signal-chip">usually</span>
+            <span class="signal-chip">often</span
+            ><span class="signal-chip">sometimes</span>
+            <span class="signal-chip">rarely</span
+            ><span class="signal-chip">seldom</span>
+            <span class="signal-chip pink">every day/week/month/year</span>
+            <span class="signal-chip green">once / twice / three times</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> She <strong>goes</strong> to school every
+            day. · The sun <strong>rises</strong> in the east.
+          </div>
+          <div class="note-box">
+            <strong>⚠️ Lưu ý:</strong> He/She/It → thêm
+            <strong>-s/-es</strong> vào động từ thường. Dấu hiệu đứng sau TO BE
+            hoặc trước động từ thường.
+          </div>
+        </div>
+      </div>
+
+      <!-- Quá Khứ Đơn -->
+      <div class="theory-content" id="t-quakhuson">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Thì Quá Khứ Đơn (Simple Past)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại</th>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="label-cell">TO BE</td>
+              <td class="formula">S + WAS/WERE</td>
+              <td class="formula">S + WAS/WERE + NOT</td>
+              <td class="formula">WAS/WERE + S + ...?</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Động từ thường</td>
+              <td class="formula">S + V2/Ved</td>
+              <td class="formula">S + DID NOT + V</td>
+              <td class="formula">DID + S + V?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>Hành động xảy ra tại một thời điểm xác định trong quá khứ</li>
+            <li>Chuỗi hành động nối tiếp trong quá khứ</li>
+            <li>Thói quen trong quá khứ (không còn ở hiện tại)</li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">yesterday</span
+            ><span class="signal-chip">last night/week/year</span>
+            <span class="signal-chip">ago</span
+            ><span class="signal-chip pink">in 2010 / in the past</span>
+            <span class="signal-chip green">when + S + V(past)</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> We <strong>watched</strong> a movie last
+            night. · She <strong>was</strong> not at home yesterday.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tương Lai -->
+      <div class="theory-content" id="t-tuonglai">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Tương Lai Đơn &amp; Tương Lai Gần
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Thì</th>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="label-cell">Will</td>
+              <td class="formula">S + WILL + V</td>
+              <td class="formula">S + WILL NOT + V</td>
+              <td class="formula">WILL + S + V?</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Be going to</td>
+              <td class="formula">S + AM/IS/ARE + going to + V</td>
+              <td class="formula">S + AM/IS/ARE + NOT + going to + V</td>
+              <td class="formula">AM/IS/ARE + S + going to + V?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Phân biệt Will vs Going to</div>
+          <ul class="usage-list">
+            <li>
+              <strong style="color: var(--accent)">WILL</strong> → Quyết định
+              tức thì lúc nói, lời hứa, dự đoán không có bằng chứng
+            </li>
+            <li>
+              <strong style="color: var(--accent2)">GOING TO</strong> → Kế hoạch
+              đã có sẵn, dự đoán có bằng chứng rõ ràng
+            </li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">tomorrow</span
+            ><span class="signal-chip">tonight</span>
+            <span class="signal-chip">soon</span
+            ><span class="signal-chip pink">next week/month/year</span>
+            <span class="signal-chip green">someday / in the future</span>
+          </div>
+          <div class="example-box">
+            <strong>Will:</strong> I promise I <strong>will</strong> call you
+            tomorrow.<br />
+            <strong>Going to:</strong> Look at the clouds — it
+            <strong>is going to</strong> rain.
+          </div>
+        </div>
+      </div>
+
+      <!-- Hiện Tại Tiếp Diễn -->
+      <div class="theory-content" id="t-hientaitiepd">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Hiện Tại Tiếp Diễn (Present Continuous)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="formula">S + AM/IS/ARE + V-ing</td>
+              <td class="formula">S + AM/IS/ARE + NOT + V-ing</td>
+              <td class="formula">AM/IS/ARE + S + V-ing?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>Hành động đang diễn ra ngay lúc nói</li>
+            <li>
+              Hành động diễn ra ở hiện tại nhưng chỉ trong khoảng thời gian ngắn
+            </li>
+            <li>
+              Cuộc hẹn, kế hoạch trong tương lai gần đã được sắp xếp rõ ràng
+            </li>
+            <li>
+              Dùng với <strong style="color: var(--accent2)">always</strong> để
+              diễn tả sự phàn nàn
+            </li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">now</span
+            ><span class="signal-chip">at present</span>
+            <span class="signal-chip pink">at the moment</span
+            ><span class="signal-chip green">Look! / Listen!</span>
+            <span class="signal-chip yellow">right now</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> Look! The children
+            <strong>are playing</strong> in the park. · She
+            <strong>is cooking</strong> dinner at the moment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Quá Khứ Tiếp Diễn -->
+      <div class="theory-content" id="t-quakhutiepd">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Quá Khứ Tiếp Diễn (Past Continuous)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="formula">S + WAS/WERE + V-ing</td>
+              <td class="formula">S + WAS/WERE + NOT + V-ing</td>
+              <td class="formula">WAS/WERE + S + V-ing?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>
+              Hành động đang diễn ra tại một thời điểm xác định trong quá khứ
+            </li>
+            <li>
+              Hai hành động diễn ra song song cùng thời điểm trong quá khứ
+              (while)
+            </li>
+            <li>
+              Hành động đang diễn ra thì bị một hành động khác ngắt quãng (when)
+            </li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">while</span
+            ><span class="signal-chip">when</span>
+            <span class="signal-chip pink">at 8 p.m. last night</span>
+            <span class="signal-chip green">at that time / at that moment</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> While she <strong>was washing</strong> the
+            dishes, the phone rang. · At 8 p.m. last night, I
+            <strong>was doing</strong> my homework.
+          </div>
+        </div>
+      </div>
+
+      <!-- Hiện Tại Hoàn Thành -->
+      <div class="theory-content" id="t-hientaihoanth">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Hiện Tại Hoàn Thành (Present Perfect)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="formula">S + HAVE/HAS + V3/Ved</td>
+              <td class="formula">S + HAVE/HAS + NOT + V3/Ved</td>
+              <td class="formula">HAVE/HAS + S + V3/Ved?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>
+              Hành động đã xảy ra ở thời điểm không xác định trong quá khứ
+            </li>
+            <li>Hành động xảy ra trong quá khứ và kéo dài tới hiện tại</li>
+            <li>Kinh nghiệm sống (ever/never)</li>
+            <li>Hành động vừa mới xảy ra (just)</li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">just</span
+            ><span class="signal-chip">already</span>
+            <span class="signal-chip">yet</span
+            ><span class="signal-chip">ever / never</span>
+            <span class="signal-chip pink">since + mốc thời gian</span>
+            <span class="signal-chip green">for + khoảng thời gian</span>
+            <span class="signal-chip yellow">recently / lately</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> I have <strong>never been</strong> to Japan.
+            · She has <strong>just finished</strong> her report. · He has
+            <strong>worked</strong> here since 2010.
+          </div>
+        </div>
+      </div>
+
+      <!-- Quá Khứ Hoàn Thành -->
+      <div class="theory-content" id="t-quakhuhoanth">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Thì Quá Khứ Hoàn Thành (Past Perfect)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Khẳng Định</th>
+              <th>Phủ Định</th>
+              <th>Nghi Vấn</th>
+            </tr>
+            <tr>
+              <td class="formula">S + HAD + V3/Ved</td>
+              <td class="formula">S + HAD + NOT + V3/Ved</td>
+              <td class="formula">HAD + S + V3/Ved?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Cách dùng</div>
+          <ul class="usage-list">
+            <li>
+              Hành động xảy ra và kết thúc trong quá khứ,
+              <strong>trước</strong> một hành động quá khứ khác
+            </li>
+            <li>Dùng trong câu điều kiện loại 3</li>
+          </ul>
+          <div class="sub-title">⚡ Dấu hiệu nhận biết</div>
+          <div class="signal-wrap">
+            <span class="signal-chip">by the time</span
+            ><span class="signal-chip">before</span>
+            <span class="signal-chip">after</span
+            ><span class="signal-chip pink">when + QKĐ</span>
+            <span class="signal-chip green">already / just / never</span>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> By the time the teacher arrived, the
+            students <strong>had finished</strong> the exercise. · When I got
+            there, she <strong>had already left</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Câu Điều Kiện -->
+      <div class="theory-content" id="t-dieukien">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Câu Điều Kiện (Conditionals)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại</th>
+              <th>Mệnh đề IF</th>
+              <th>Mệnh đề chính</th>
+              <th>Ý nghĩa</th>
+            </tr>
+            <tr>
+              <td class="label-cell">Loại 0</td>
+              <td class="formula">If + S + V(s/es)</td>
+              <td class="formula">S + V(s/es)</td>
+              <td>Sự thật hiển nhiên</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Loại 1</td>
+              <td class="formula">If + S + V(s/es)</td>
+              <td class="formula">S + WILL/CAN/SHALL + V</td>
+              <td>Có thể xảy ra ở hiện tại/tương lai</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Loại 2</td>
+              <td class="formula">If + S + V2/Ved</td>
+              <td class="formula">S + WOULD/COULD/SHOULD + V</td>
+              <td>Giả định trái thực tế ở hiện tại</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Loại 3</td>
+              <td class="formula">If + S + HAD + V3/Ved</td>
+              <td class="formula">S + WOULD/COULD + HAVE + V3/Ved</td>
+              <td>Giả định trái thực tế trong quá khứ</td>
+            </tr>
+          </table>
+          <div class="example-box">
+            <strong>L1:</strong> If it rains, I <strong>will</strong> stay
+            home.<br />
+            <strong>L2:</strong> If I had more money, I
+            <strong>would buy</strong> a car.<br />
+            <strong>L3:</strong> If she <strong>had studied</strong> harder, she
+            <strong>would have passed</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Câu Hỏi Đuôi -->
+      <div class="theory-content" id="t-cauhoiduoi">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Câu Hỏi Đuôi (Tag Questions)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Câu chính</th>
+              <th>Đuôi hỏi</th>
+            </tr>
+            <tr>
+              <td>Câu <strong>khẳng định</strong></td>
+              <td class="formula">... , phủ định + đại từ?</td>
+            </tr>
+            <tr>
+              <td>Câu <strong>phủ định</strong></td>
+              <td class="formula">... , khẳng định + đại từ?</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Ví dụ cụ thể</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Câu chính</th>
+              <th>Đuôi hỏi</th>
+            </tr>
+            <tr>
+              <td>She is coming, ...</td>
+              <td class="formula">isn't she?</td>
+            </tr>
+            <tr>
+              <td>They don't like coffee, ...</td>
+              <td class="formula">do they?</td>
+            </tr>
+            <tr>
+              <td>He can swim, ...</td>
+              <td class="formula">can't he?</td>
+            </tr>
+            <tr>
+              <td>You have met him, ...</td>
+              <td class="formula">haven't you?</td>
+            </tr>
+            <tr>
+              <td>Let's go, ...</td>
+              <td class="formula">shall we?</td>
+            </tr>
+            <tr>
+              <td>Don't be late, ...</td>
+              <td class="formula">will you?</td>
+            </tr>
+            <tr>
+              <td>He had never been abroad, ...</td>
+              <td class="formula">had he?</td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <strong>⚠️ Lưu ý đặc biệt:</strong> I am → aren't I? (trường hợp
+            ngoại lệ!)
+          </div>
+        </div>
+      </div>
+
+      <!-- Dạng Động Từ -->
+      <div class="theory-content" id="t-dangdongtu">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Dạng Động Từ (Verb Forms)</div>
+          <div class="sub-title">✅ Động từ theo sau bằng V-ing</div>
+          <div class="conn-row">
+            <span class="conn-chip">like</span
+            ><span class="conn-chip">love</span
+            ><span class="conn-chip">hate</span>
+            <span class="conn-chip">enjoy</span
+            ><span class="conn-chip">dislike</span
+            ><span class="conn-chip">finish</span>
+            <span class="conn-chip">stop</span
+            ><span class="conn-chip">keep</span
+            ><span class="conn-chip">go</span>
+            <span class="conn-chip">spend</span
+            ><span class="conn-chip">avoid</span
+            ><span class="conn-chip">mind</span>
+            <span class="conn-chip">suggest</span
+            ><span class="conn-chip">deny</span
+            ><span class="conn-chip">be used to</span>
+          </div>
+          <div class="sub-title">✅ Động từ theo sau bằng TO + V</div>
+          <div class="conn-row">
+            <span class="conn-chip">want</span
+            ><span class="conn-chip">need</span
+            ><span class="conn-chip">hope</span>
+            <span class="conn-chip">decide</span
+            ><span class="conn-chip">plan</span
+            ><span class="conn-chip">learn</span>
+            <span class="conn-chip">forget*</span
+            ><span class="conn-chip">remember*</span
+            ><span class="conn-chip">promise</span>
+            <span class="conn-chip">would like</span
+            ><span class="conn-chip">agree</span
+            ><span class="conn-chip">refuse</span>
+            <span class="conn-chip">manage</span
+            ><span class="conn-chip">regret*</span
+            ><span class="conn-chip">would prefer</span>
+          </div>
+          <div class="note-box">
+            <strong>⚠️ Động từ thay đổi nghĩa:</strong><br />
+            • <strong>remember/forget + V-ing</strong> → nhớ/quên việc đã làm
+            trong quá khứ<br />
+            • <strong>remember/forget + to V</strong> → nhớ/quên việc cần làm<br />
+            • <strong>stop + V-ing</strong> → dừng việc đang làm |
+            <strong>stop + to V</strong> → dừng lại để làm gì<br />
+            • <strong>would rather + V</strong> (nguyên thể không to) ·
+            <strong>had better + V</strong>
+          </div>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> She enjoys <strong>listening</strong> to
+            music. · He wants <strong>to become</strong> a doctor. · I remember
+            <strong>leaving</strong> my keys (đã để rồi). · Remember
+            <strong>to lock</strong> the door (nhớ khóa cửa nhé).
+          </div>
+        </div>
+      </div>
+
+      <!-- Giới Từ -->
+      <div class="theory-content" id="t-giotu">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Giới Từ (Prepositions)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại</th>
+              <th>Giới từ</th>
+              <th>Ví dụ</th>
+            </tr>
+            <tr>
+              <td class="label-cell">Thời gian</td>
+              <td>
+                <span class="signal-chip">AT</span>
+                <span class="signal-chip">ON</span>
+                <span class="signal-chip">IN</span> before / after / during
+              </td>
+              <td>at 8 a.m. · on Monday · in March</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Vị trí</td>
+              <td>at / in / above / over / on / under / beside</td>
+              <td>at school · in the room · on the table</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Di chuyển</td>
+              <td>to / into / onto / from / across / along / around</td>
+              <td>walk <strong>across</strong> the bridge</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Thể cách</td>
+              <td>with / without / according to / in spite of</td>
+              <td>with a pen · without help</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Mục đích</td>
+              <td>to / in order to / so as to / for</td>
+              <td>study <strong>to</strong> pass the exam</td>
+            </tr>
+            <tr>
+              <td class="label-cell">Nguyên nhân</td>
+              <td>thanks to / because of / due to / owing to</td>
+              <td>delayed <strong>due to</strong> the storm</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 AT / ON / IN (thời gian)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>AT</th>
+              <th>ON</th>
+              <th>IN</th>
+            </tr>
+            <tr>
+              <td>giờ cụ thể<br /><em>at 7 a.m., at noon, at night</em></td>
+              <td>ngày / thứ<br /><em>on Monday, on May 5th</em></td>
+              <td>
+                tháng / năm / mùa<br /><em>in March, in 2024, in winter</em>
+              </td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <strong>⚠️ Giới từ hay dùng với tính từ:</strong> interested
+            <strong>in</strong> · good <strong>at</strong> · afraid
+            <strong>of</strong> · sorry <strong>for</strong> · apologize
+            <strong>for</strong> · depend <strong>on</strong> · aim
+            <strong>at</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Câu So Sánh -->
+      <div class="theory-content" id="t-sosanh">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Câu So Sánh (Comparisons)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại</th>
+              <th>1 âm tiết</th>
+              <th>≥ 2 âm tiết</th>
+            </tr>
+            <tr>
+              <td class="label-cell">So sánh bằng</td>
+              <td class="formula" colspan="2">S + V + AS + adj/adv + AS</td>
+            </tr>
+            <tr>
+              <td class="label-cell">So sánh hơn</td>
+              <td class="formula">S + V + adj-ER + THAN</td>
+              <td class="formula">S + V + MORE/LESS + adj + THAN</td>
+            </tr>
+            <tr>
+              <td class="label-cell">So sánh nhất</td>
+              <td class="formula">S + V + THE + adj-EST</td>
+              <td class="formula">S + V + THE MOST/LEAST + adj</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Bất quy tắc</div>
+          <table class="irreg-table">
+            <tr>
+              <th>Gốc</th>
+              <th>So sánh hơn</th>
+              <th>So sánh nhất</th>
+            </tr>
+            <tr>
+              <td>good / well</td>
+              <td>better</td>
+              <td>the best</td>
+            </tr>
+            <tr>
+              <td>bad / badly</td>
+              <td>worse</td>
+              <td>the worst</td>
+            </tr>
+            <tr>
+              <td>much / many</td>
+              <td>more</td>
+              <td>the most</td>
+            </tr>
+            <tr>
+              <td>little</td>
+              <td>less</td>
+              <td>the least</td>
+            </tr>
+            <tr>
+              <td>far</td>
+              <td>farther / further</td>
+              <td>the farthest / furthest</td>
+            </tr>
+          </table>
+          <div class="example-box">
+            <strong>Ví dụ:</strong> Lan is <strong>taller than</strong> her
+            sister. · This is <strong>the most interesting</strong> book I've
+            read. · Her English is <strong>as good as</strong> her brother's.
+          </div>
+          <div class="note-box">
+            <strong>⚠️ Cấu trúc đặc biệt:</strong> The + comparative, the +
+            comparative<br /><em
+              >"The more you practice, the better you become."</em
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Loại Từ -->
+      <div class="theory-content" id="t-loaitu">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Loại Từ (Word Forms)</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Loại từ</th>
+              <th>Hậu tố phổ biến</th>
+              <th>Ví dụ</th>
+            </tr>
+            <tr>
+              <td class="label-cell">Danh từ (N)</td>
+              <td>
+                -tion / -sion · -ance / -ence · -ment · -ness · -ity · -er/-or ·
+                -ist · -ship
+              </td>
+              <td>
+                perform<strong>ance</strong> · develop<strong>ment</strong> ·
+                happi<strong>ness</strong> · abil<strong>ity</strong>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">Tính từ (Adj)</td>
+              <td>
+                -ful · -less · -al · -ous/-ious · -able/-ible · -ive · -ic · -y
+                · -ary · -ory
+              </td>
+              <td>
+                care<strong>ful</strong> · hope<strong>less</strong> ·
+                effect<strong>ive</strong> · comprehens<strong>ive</strong>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">Trạng từ (Adv)</td>
+              <td>tính từ + <strong>-ly</strong></td>
+              <td>
+                quick → quick<strong>ly</strong> · confident → confident<strong
+                  >ly</strong
+                >
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">Động từ (V)</td>
+              <td>-ize / -ise · -en · -ify</td>
+              <td>
+                modern<strong>ize</strong> · wide<strong>n</strong> ·
+                simpli<strong>fy</strong>
+              </td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <strong>⚠️ Đặc biệt:</strong> <strong>friendly</strong> là TÍNH TỪ
+            (không phải trạng từ). Trạng từ: <em>in a friendly way/manner</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mệnh Đề Quan Hệ -->
+      <div class="theory-content" id="t-menhde">
+        <div class="theory-card">
+          <div class="theory-card-title">
+            📌 Mệnh Đề Quan Hệ (Relative Clauses)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Đại từ</th>
+              <th>Dùng cho</th>
+              <th>Ví dụ</th>
+            </tr>
+            <tr>
+              <td class="label-cell">WHO / THAT</td>
+              <td>Người (chủ ngữ)</td>
+              <td>
+                The girl <strong>who</strong> sits next to me is my friend.
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHOM</td>
+              <td>Người (tân ngữ)</td>
+              <td>The teacher <strong>whom</strong> I respect retired.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHICH / THAT</td>
+              <td>Vật, đồ vật</td>
+              <td>This is the book <strong>which</strong> I told you about.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHOSE</td>
+              <td>Sở hữu (người/vật)</td>
+              <td>
+                The scientist <strong>whose</strong> research changed medicine
+                won a prize.
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHERE</td>
+              <td>Địa điểm</td>
+              <td>The city <strong>where</strong> I was born has changed.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHEN</td>
+              <td>Thời gian</td>
+              <td>I remember the day <strong>when</strong> we first met.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">WHY</td>
+              <td>Lý do</td>
+              <td>That's the reason <strong>why</strong> she left.</td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <strong>⚠️ Lưu ý:</strong> Có thể bỏ đại từ quan hệ khi nó đóng vai
+            trò <strong>tân ngữ</strong> trong mệnh đề quan hệ xác định. THAT
+            không dùng sau dấu phẩy.
+          </div>
+        </div>
+      </div>
+
+      <!-- Câu Bị Động -->
+      <div class="theory-content" id="t-biddong">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Câu Bị Động (Passive Voice)</div>
+          <div class="example-box" style="margin-bottom: 12px">
+            <strong>Công thức chung:</strong> S(mới) +
+            <strong style="color: var(--accent)">BE</strong> (chia đúng thì) +
+            <strong style="color: var(--accent2)">V3/Ved</strong> + (by + O cũ)
+          </div>
+          <table class="grammar-table">
+            <tr>
+              <th>Thì</th>
+              <th>Chủ động</th>
+              <th>Bị động</th>
+            </tr>
+            <tr>
+              <td class="label-cell">HTĐ</td>
+              <td>They clean the room.</td>
+              <td class="formula">The room IS cleaned.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">QKĐ</td>
+              <td>She wrote this letter.</td>
+              <td class="formula">This letter WAS written (by her).</td>
+            </tr>
+            <tr>
+              <td class="label-cell">HTTD</td>
+              <td>They are building the bridge.</td>
+              <td class="formula">The bridge IS BEING built.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">HTHTH</td>
+              <td>They have finished the project.</td>
+              <td class="formula">The project HAS BEEN finished.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">TLĐ</td>
+              <td>They will open the mall.</td>
+              <td class="formula">The mall WILL BE opened.</td>
+            </tr>
+            <tr>
+              <td class="label-cell">QK HT</td>
+              <td>They had prepared the docs.</td>
+              <td class="formula">The docs HAD BEEN prepared.</td>
+            </tr>
+          </table>
+          <div class="note-box">
+            <strong>⚠️ Lưu ý:</strong> Bỏ "by + O" khi O là: people / they /
+            someone / everyone (không quan trọng ai làm)
+          </div>
+        </div>
+      </div>
+
+      <!-- Liên Từ -->
+      <div class="theory-content" id="t-lientu">
+        <div class="theory-card">
+          <div class="theory-card-title">📌 Liên Từ (Conjunctions)</div>
+          <div class="sub-title">📖 Đẳng lập (Coordinating)</div>
+          <div class="conn-row">
+            <span class="conn-chip">and</span><span class="conn-chip">or</span>
+            <span class="conn-chip">but</span><span class="conn-chip">so</span>
+            <span class="conn-chip">for</span><span class="conn-chip">nor</span
+            ><span class="conn-chip">yet</span>
+          </div>
+          <div class="sub-title">📖 Nguyên nhân</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Liên từ</th>
+              <th>Theo sau</th>
+              <th>Ví dụ</th>
+            </tr>
+            <tr>
+              <td class="formula">because</td>
+              <td>S + V (mệnh đề)</td>
+              <td>She was late <strong>because</strong> there was traffic.</td>
+            </tr>
+            <tr>
+              <td class="formula">because of / due to / owing to</td>
+              <td>N / N phrase</td>
+              <td>Late <strong>because of</strong> the traffic.</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Tương phản</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Liên từ</th>
+              <th>Theo sau</th>
+            </tr>
+            <tr>
+              <td class="formula">although / though / even though</td>
+              <td>S + V (mệnh đề đầy đủ)</td>
+            </tr>
+            <tr>
+              <td class="formula">despite / in spite of</td>
+              <td>N / N phrase / the fact that + S + V</td>
+            </tr>
+          </table>
+          <div class="sub-title">📖 Kết quả &amp; Mục đích</div>
+          <table class="grammar-table">
+            <tr>
+              <th>Liên từ</th>
+              <th>Cách dùng</th>
+            </tr>
+            <tr>
+              <td class="formula">so that</td>
+              <td>...so that + S + can/could/will/would + V (mục đích)</td>
+            </tr>
+            <tr>
+              <td class="formula">therefore / consequently / accordingly</td>
+              <td>Kết quả (đứng đầu mệnh đề sau dấu ; hoặc .)</td>
+            </tr>
+            <tr>
+              <td class="formula">however / nevertheless / nonetheless</td>
+              <td>Tương phản (đứng đầu mệnh đề)</td>
+            </tr>
+            <tr>
+              <td class="formula">unless</td>
+              <td>= if ... not (nếu không)</td>
+            </tr>
+          </table>
+          <div class="example-box">
+            <strong>Ví dụ:</strong><br />
+            She studied hard <strong>although</strong> she was tired.<br />
+            <strong>Despite</strong> the bad weather, they continued.<br />
+            She worked hard <strong>so that</strong> she could save money.<br />
+            You won't succeed <strong>unless</strong> you work harder.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /theory-screen -->
+
+    <script>
+      function switchMain(tab) {
+        document
+          .getElementById("nav-test")
+          .classList.toggle("active", tab === "test");
+        document
+          .getElementById("nav-theory")
+          .classList.toggle("active", tab === "theory");
+        document.getElementById("test-wrapper").style.display =
+          tab === "test" ? "block" : "none";
+        document.getElementById("theory-screen").style.display =
+          tab === "theory" ? "block" : "none";
+      }
+
+      function showTheory(id) {
+        document
+          .querySelectorAll(".theory-content")
+          .forEach((el) => el.classList.remove("visible"));
+        document.getElementById(id).classList.add("visible");
+        document.querySelectorAll(".theory-tab").forEach((t) => {
+          t.classList.toggle(
+            "active",
+            t.getAttribute("onclick") === "showTheory('" + id + "')",
+          );
+        });
+        document
+          .getElementById(id)
+          .scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function searchTheory(val) {
+        if (!val.trim()) return;
+        val = val.toLowerCase();
+        const map = {
+          "hiện tại đơn": "t-hientaison",
+          "hien tai don": "t-hientaison",
+          "hienm tại": "t-hientaison",
+          "quá khứ đơn": "t-quakhuson",
+          "qua khu don": "t-quakhuson",
+          "tương lai": "t-tuonglai",
+          "tuong lai": "t-tuonglai",
+          will: "t-tuonglai",
+          "tiếp diễn": "t-hientaitiepd",
+          "tiep dien": "t-hientaitiepd",
+          httd: "t-hientaitiepd",
+          "quá khứ tiếp": "t-quakhutiepd",
+          qktd: "t-quakhutiepd",
+          "hoàn thành": "t-hientaihoanth",
+          "hoan thanh": "t-hientaihoanth",
+          httht: "t-hientaihoanth",
+          "quá khứ hoàn": "t-quakhuhoanth",
+          qkht: "t-quakhuhoanth",
+          "điều kiện": "t-dieukien",
+          "dieu kien": "t-dieukien",
+          if: "t-dieukien",
+          "hỏi đuôi": "t-cauhoiduoi",
+          "hoi duoi": "t-cauhoiduoi",
+          tag: "t-cauhoiduoi",
+          "dạng động": "t-dangdongtu",
+          "dang dong": "t-dangdongtu",
+          "v-ing": "t-dangdongtu",
+          "giới từ": "t-giotu",
+          "gioi tu": "t-giotu",
+          preposition: "t-giotu",
+          "so sánh": "t-sosanh",
+          "so sanh": "t-sosanh",
+          comparison: "t-sosanh",
+          "loại từ": "t-loaitu",
+          "loai tu": "t-loaitu",
+          "word form": "t-loaitu",
+          "mệnh đề": "t-menhde",
+          "menh de": "t-menhde",
+          relative: "t-menhde",
+          who: "t-menhde",
+          which: "t-menhde",
+          "bị động": "t-biddong",
+          "bi dong": "t-biddong",
+          passive: "t-biddong",
+          "liên từ": "t-lientu",
+          "lien tu": "t-lientu",
+          although: "t-lientu",
+          despite: "t-lientu",
+        };
+        for (const [key, id] of Object.entries(map)) {
+          if (val.includes(key)) {
+            showTheory(id);
+            switchMain("theory");
+            return;
+          }
+        }
+      }
+
+      // ===== TEST DATA =====
+      const set1 = [
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "She _____ to school every day.",
+          opts: ["go", "goes", "going", "went"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "They _____ not like spicy food.",
+          opts: ["is", "are", "do", "does"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "He usually _____ TV in the evening.",
+          opts: ["watch", "watches", "watched", "watching"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "_____ your brother play football?",
+          opts: ["Do", "Does", "Is", "Are"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "The sun _____ in the east.",
+          opts: ["rise", "rises", "rose", "rising"],
+          ans: 1,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "We _____ a movie last night.",
+          opts: ["watch", "watches", "watched", "watching"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "She _____ not at home yesterday.",
+          opts: ["is", "are", "was", "were"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "_____ they visit the museum last Sunday?",
+          opts: ["Do", "Does", "Did", "Were"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "He _____ his homework two hours ago.",
+          opts: ["finish", "finishes", "finished", "finishing"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "My parents _____ to Ha Noi in 2019.",
+          opts: ["go", "goes", "went", "gone"],
+          ans: 2,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "It looks cloudy. It _____ rain soon.",
+          opts: ["will", "is going to", "goes to", "shall"],
+          ans: 1,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "I promise I _____ call you tomorrow.",
+          opts: ["am going to", "will", "am", "going to"],
+          ans: 1,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "They _____ travel to Europe next summer.",
+          opts: ["are going to", "will going to", "go", "went"],
+          ans: 0,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "_____ you help me with this bag?",
+          opts: ["Are", "Do", "Will", "Did"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Tiếp Diễn",
+          q: "Look! The children _____ in the park.",
+          opts: ["play", "plays", "playing", "are playing"],
+          ans: 3,
+        },
+        {
+          section: "Thì Hiện Tại Tiếp Diễn",
+          q: "She _____ dinner at the moment.",
+          opts: ["cook", "cooks", "is cooking", "was cooking"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Tiếp Diễn",
+          q: "_____ they studying right now?",
+          opts: ["Do", "Does", "Are", "Is"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "I _____ never been to Japan.",
+          opts: ["have", "has", "had", "did"],
+          ans: 0,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "She _____ just finished her report.",
+          opts: ["have", "has", "had", "did"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "_____ you ever eaten sushi?",
+          opts: ["Did", "Do", "Have", "Has"],
+          ans: 2,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "If it rains tomorrow, we _____ stay home.",
+          opts: ["will", "would", "shall", "can"],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "If I had more money, I _____ buy a new phone.",
+          opts: ["will", "would", "can", "should"],
+          ans: 1,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "She enjoys _____ to music every morning.",
+          opts: ["listen", "listens", "listening", "to listen"],
+          ans: 2,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "He wants _____ a doctor in the future.",
+          opts: ["become", "becomes", "becoming", "to become"],
+          ans: 3,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "They decided _____ a new house.",
+          opts: ["buy", "buying", "to buy", "bought"],
+          ans: 2,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "Lan is _____ than her sister.",
+          opts: ["tall", "taller", "tallest", "more tall"],
+          ans: 1,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "This book is _____ interesting than that one.",
+          opts: ["more", "most", "much", "many"],
+          ans: 0,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "He is the _____ student in the class.",
+          opts: ["good", "better", "best", "most good"],
+          ans: 2,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ",
+          q: "The girl _____ sits next to me is my friend.",
+          opts: ["which", "who", "whom", "whose"],
+          ans: 1,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ",
+          q: "This is the book _____ I told you about.",
+          opts: ["who", "whom", "which", "where"],
+          ans: 2,
+        },
+      ];
+      const set2 = [
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "Water _____ at 100 degrees Celsius.",
+          opts: ["boil", "boils", "is boiling", "boiled"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "My sister rarely _____ on time for meetings.",
+          opts: ["arrive", "arrives", "arrived", "arriving"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "_____ your parents often travel abroad for work?",
+          opts: ["Is", "Does", "Do", "Are"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "The bus _____ at 7 a.m. every morning according to the schedule.",
+          opts: ["leave", "leaves", "is leaving", "left"],
+          ans: 1,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "When I was young, my family _____ in a small village.",
+          opts: ["live", "lives", "lived", "living"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "She _____ to the doctor because she had a bad headache.",
+          opts: ["go", "goes", "went", "gone"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "They _____ not finish the project on time last month.",
+          opts: ["do", "does", "did", "were"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "_____ he know about the party before he arrived?",
+          opts: ["Does", "Did", "Was", "Do"],
+          ans: 1,
+        },
+        {
+          section: "Thì Quá Khứ Tiếp Diễn",
+          q: "At 8 p.m. last night, I _____ my homework.",
+          opts: ["do", "did", "was doing", "am doing"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Tiếp Diễn",
+          q: "While she _____ the dishes, the phone rang.",
+          opts: ["washed", "washes", "was washing", "is washing"],
+          ans: 2,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "My flight _____ at 6 a.m. tomorrow morning.",
+          opts: ["is leaving", "leaves", "will leaving", "leave"],
+          ans: 1,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "She has already decided — she _____ study medicine at university.",
+          opts: ["will", "is going to", "goes to", "would"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Tiếp Diễn",
+          q: "He _____ always _____ his keys. It's so annoying!",
+          opts: ["is/losing", "does/lose", "has/lost", "was/losing"],
+          ans: 0,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "I _____ this movie three times already — it's amazing!",
+          opts: ["see", "saw", "have seen", "had seen"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "She _____ in this city since she was born.",
+          opts: ["lives", "lived", "has lived", "had lived"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "We _____ not received any reply from them yet.",
+          opts: ["do", "did", "have", "has"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Hoàn Thành",
+          q: "By the time the teacher arrived, the students _____ the exercise.",
+          opts: ["finish", "finished", "have finished", "had finished"],
+          ans: 3,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "If you _____ harder, you will pass the exam.",
+          opts: ["study", "studied", "studies", "will study"],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "If she _____ the address, she wouldn't get lost.",
+          opts: ["know", "knows", "knew", "had known"],
+          ans: 2,
+        },
+        {
+          section: "Câu Hỏi Đuôi",
+          q: "She is coming to the party, _____?",
+          opts: ["isn't she", "is she", "doesn't she", "does she"],
+          ans: 0,
+        },
+        {
+          section: "Câu Hỏi Đuôi",
+          q: "They don't like coffee, _____?",
+          opts: ["don't they", "do they", "aren't they", "are they"],
+          ans: 1,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "My parents don't allow me _____ out late on weekdays.",
+          opts: ["go", "going", "to go", "went"],
+          ans: 2,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "He kept _____ the same mistake even after being corrected.",
+          opts: ["make", "makes", "to make", "making"],
+          ans: 3,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "This laptop is _____ one I have ever used.",
+          opts: [
+            "the most convenient",
+            "the more convenient",
+            "most convenient",
+            "more convenient",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "Her English is _____ as her brother's.",
+          opts: ["as good", "the same", "better", "more good"],
+          ans: 0,
+        },
+        {
+          section: "Câu Bị Động",
+          q: "This letter _____ by my grandfather in 1980.",
+          opts: ["writes", "wrote", "is written", "was written"],
+          ans: 3,
+        },
+        {
+          section: "Câu Bị Động",
+          q: "The windows _____ every week by the cleaner.",
+          opts: ["clean", "cleans", "are cleaned", "is cleaned"],
+          ans: 2,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ",
+          q: "The city _____ I was born has changed a lot.",
+          opts: ["which", "that", "where", "when"],
+          ans: 2,
+        },
+        {
+          section: "Liên Từ",
+          q: "She studied hard _____ she failed the exam.",
+          opts: ["so", "because", "but", "although"],
+          ans: 3,
+        },
+        {
+          section: "Loại Từ",
+          q: "His _____ in the competition surprised everyone. (perform)",
+          opts: ["perform", "performer", "performance", "performing"],
+          ans: 2,
+        },
+      ];
+      const set3 = [
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "The committee _____ the proposal every year before approving the budget.",
+          opts: ["review", "reviews", "is reviewing", "reviewed"],
+          ans: 1,
+        },
+        {
+          section: "Thì Hiện Tại Đơn",
+          q: "Neither of the students _____ understand the assignment.",
+          opts: ["do", "does", "are", "have"],
+          ans: 1,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "I _____ to tell you about it, but I forgot completely.",
+          opts: ["want", "wanted", "was wanting", "have wanted"],
+          ans: 1,
+        },
+        {
+          section: "Thì Quá Khứ Đơn",
+          q: "The police _____ the thief after a long chase through the city.",
+          opts: ["catch", "catches", "caught", "catching"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Tiếp Diễn",
+          q: "The children _____ to music when their mother came home.",
+          opts: ["listened", "listen", "were listening", "are listening"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Tiếp Diễn",
+          q: "What _____ you _____ when the earthquake happened?",
+          opts: ["were/doing", "did/do", "have/done", "do/do"],
+          ans: 0,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "This is the first time she _____ sashimi in her life.",
+          opts: ["eats", "ate", "has eaten", "had eaten"],
+          ans: 2,
+        },
+        {
+          section: "Thì Hiện Tại Hoàn Thành",
+          q: "He _____ for the company since he graduated from university.",
+          opts: ["works", "worked", "has worked", "had worked"],
+          ans: 2,
+        },
+        {
+          section: "Thì Quá Khứ Hoàn Thành",
+          q: "When I got to the cinema, the film _____.",
+          opts: [
+            "already started",
+            "has already started",
+            "had already started",
+            "was already starting",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Thì Tương Lai",
+          q: "Based on the weather forecast, it _____ be very cold this weekend.",
+          opts: ["is going to", "will", "goes", "is"],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "If the train _____ on time, we wouldn't have missed the meeting.",
+          opts: ["came", "comes", "had come", "would come"],
+          ans: 2,
+        },
+        {
+          section: "Câu Điều Kiện",
+          q: "She could pass the exam if she _____ more attention in class.",
+          opts: ["pays", "paid", "will pay", "has paid"],
+          ans: 1,
+        },
+        {
+          section: "Câu Hỏi Đuôi",
+          q: "You have met him before, _____?",
+          opts: ["have you", "haven't you", "did you", "didn't you"],
+          ans: 1,
+        },
+        {
+          section: "Câu Hỏi Đuôi",
+          q: "Let's go to the beach this weekend, _____?",
+          opts: ["do we", "shall we", "will we", "don't we"],
+          ans: 1,
+        },
+        {
+          section: "Câu Bị Động",
+          q: "A new shopping mall _____ in this area next year.",
+          opts: ["build", "builds", "is built", "will be built"],
+          ans: 3,
+        },
+        {
+          section: "Câu Bị Động",
+          q: "The report _____ before the deadline last Friday.",
+          opts: ["submitted", "was submitted", "has submitted", "is submitted"],
+          ans: 1,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "I remember _____ my keys on the table, but now they're gone.",
+          opts: ["leave", "left", "to leave", "leaving"],
+          ans: 3,
+        },
+        {
+          section: "Dạng Động Từ",
+          q: "She forgot _____ the door, so it was open all night.",
+          opts: ["lock", "locking", "to lock", "locked"],
+          ans: 2,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ",
+          q: "The scientist _____ research changed our understanding of the disease won a prize.",
+          opts: ["who", "which", "whose", "whom"],
+          ans: 2,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ",
+          q: "Is this the restaurant _____ you had your birthday dinner last year?",
+          opts: ["which", "that", "where", "when"],
+          ans: 2,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "The longer you wait, _____ it becomes to solve the problem.",
+          opts: [
+            "the more difficult",
+            "more difficult",
+            "the most difficult",
+            "most difficult",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Câu So Sánh",
+          q: "His new novel is not nearly _____ his previous one.",
+          opts: ["as good as", "so good than", "better than", "the best as"],
+          ans: 0,
+        },
+        {
+          section: "Liên Từ",
+          q: "_____ the bad weather, they decided to continue the outdoor event.",
+          opts: ["Although", "Because of", "Despite", "So"],
+          ans: 2,
+        },
+        {
+          section: "Liên Từ",
+          q: "She worked overtime every day _____ she could save enough money for a vacation.",
+          opts: ["although", "despite", "so that", "because of"],
+          ans: 2,
+        },
+        {
+          section: "Giới Từ",
+          q: "The flight was delayed _____ the heavy storm.",
+          opts: ["despite", "because of", "although", "in order to"],
+          ans: 1,
+        },
+        {
+          section: "Giới Từ",
+          q: "We walked _____ the bridge to reach the other side of the river.",
+          opts: ["across", "along", "around", "into"],
+          ans: 0,
+        },
+        {
+          section: "Loại Từ",
+          q: "The government needs to find a _____ solution to the housing crisis. (effect)",
+          opts: ["effect", "effective", "effectively", "effectiveness"],
+          ans: 1,
+        },
+        {
+          section: "Loại Từ",
+          q: "She spoke _____ about her experience, which impressed everyone. (confidence)",
+          opts: ["confidence", "confident", "confide", "confidently"],
+          ans: 3,
+        },
+        {
+          section: "Câu Hỏi Đuôi",
+          q: "He had never been abroad before this trip, _____?",
+          opts: ["had he", "hadn't he", "has he", "hasn't he"],
+          ans: 0,
+        },
+        {
+          section: "Thì Hiện Tại Tiếp Diễn",
+          q: "I _____ meeting at 3 p.m. tomorrow. It's in my calendar.",
+          opts: ["have", "am having", "will have", "had"],
+          ans: 1,
+        },
+      ];
+      const set4 = [
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He said: 'I am tired.' → He said that he _____ tired.",
+          opts: ["is", "was", "were", "has been"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She told me: 'I will call you tomorrow.' → She told me she _____ call me the next day.",
+          opts: ["will", "would", "shall", "should"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "They said: 'We have finished the work.' → They said they _____ the work.",
+          opts: ["have finished", "had finished", "finished", "were finishing"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He asked me: 'Do you speak French?' → He asked me _____ I spoke French.",
+          opts: ["that", "if", "whether or", "if or whether"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She said: 'Don't open the window.' → She told me _____ the window.",
+          opts: ["don't open", "not to open", "to not open", "not opening"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "You look exhausted. You _____ get some rest.",
+          opts: ["can", "may", "should", "would"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "I'm not sure, but she _____ be at the library — she often studies there.",
+          opts: ["must", "should", "might", "will"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He _____ have left his phone at the restaurant — it's not in his bag.",
+          opts: ["should", "must", "would", "could"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "You _____ smoke in this area. It's strictly forbidden.",
+          opts: ["mustn't", "don't have to", "shouldn't", "needn't"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "We _____ book tickets in advance — the venue is never full.",
+          opts: ["must", "have to", "don't have to", "mustn't"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "Please _____ your shoes before entering the temple.",
+          opts: ["take off", "take away", "take out", "take down"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "I need to _____ this report before the meeting tomorrow.",
+          opts: ["go over", "go through", "look over", "look up"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She _____ her mother — they have the same eyes and smile.",
+          opts: ["looks after", "looks like", "takes after", "takes up"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "Don't _____ the meeting. Everyone needs to be there.",
+          opts: ["put off", "put away", "put out", "put on"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He _____ smoking three years ago and feels much healthier now.",
+          opts: ["gave up", "gave out", "gave in", "gave away"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The documents _____ by the secretary before the director arrived.",
+          opts: [
+            "prepare",
+            "prepared",
+            "have been prepared",
+            "had been prepared",
+          ],
+          ans: 3,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "It _____ that the company will expand its business next year.",
+          opts: ["is expected", "expects", "was expected", "has expected"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The bridge _____ for repairs next month.",
+          opts: ["closes", "will close", "is going to close", "will be closed"],
+          ans: 3,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ he passed the exam surprised everyone in the class.",
+          opts: ["That", "What", "Which", "If"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "I don't know _____ she will accept the job offer.",
+          opts: ["that", "what", "whether", "which"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ he was well-qualified, he didn't get the job.",
+          opts: ["Because", "Even though", "Since", "So"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She was late _____ the heavy traffic on the highway.",
+          opts: ["because", "due to", "although", "unless"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "You won't succeed _____ you put in more effort.",
+          opts: ["if", "unless", "until", "though"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The new policy caused a lot of _____ among the employees. (disagree)",
+          opts: ["disagree", "disagreement", "disagreeable", "disagreeing"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "His _____ to learn new languages is truly remarkable. (able)",
+          opts: ["able", "ability", "ably", "unable"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The more you practice, _____ you become.",
+          opts: [
+            "the more fluent",
+            "more fluent",
+            "most fluent",
+            "the most fluent",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "This year's results are _____ last year's in every subject.",
+          opts: [
+            "far better than",
+            "far more better than",
+            "much more good than",
+            "much better as",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She has been interested _____ photography since she was a teenager.",
+          opts: ["at", "of", "in", "about"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He apologized _____ being late to the important meeting.",
+          opts: ["about", "for", "of", "to"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "If she _____ to the gym regularly, she would be healthier now.",
+          opts: ["goes", "went", "had gone", "would go"],
+          ans: 2,
+        },
+      ];
+      const set5 = [
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The manager said: 'The project must be completed by Friday.' → The manager said the project _____ completed by Friday.",
+          opts: ["must be", "had to be", "should be", "would be"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She asked: 'How long have you been working here?' → She asked how long I _____ working there.",
+          opts: ["have been", "had been", "was", "am"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He warned us: 'Don't trust strangers online.' → He warned us _____ strangers online.",
+          opts: ["not trust", "to not trust", "not to trust", "don't trust"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She _____ have told you the truth — she always lies in that situation.",
+          opts: ["can't", "mustn't", "shouldn't", "wouldn't"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "You _____ prepare more thoroughly — your presentation was quite weak.",
+          opts: ["should have", "must have", "could have", "would have"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "They _____ arrived by now — their flight landed two hours ago.",
+          opts: ["should have", "must have", "can have", "will have"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ had I left the building when it started raining heavily.",
+          opts: ["Hardly", "Rarely", "Never", "Scarcely"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "Not only _____ the exam, but she also received a scholarship.",
+          opts: [
+            "she passed",
+            "did she pass",
+            "she did pass",
+            "had she passed",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "It was _____ that first introduced me to classical music.",
+          opts: [
+            "my teacher who",
+            "my teacher whom",
+            "my teacher which",
+            "my teacher whose",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The woman _____ the red dress is my colleague.",
+          opts: ["wearing", "who wearing", "that wearing", "worn"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The letter _____ on the table belongs to your sister.",
+          opts: ["lying", "that lying", "lain", "which lying"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The project _____ last week received positive feedback from all stakeholders.",
+          opts: [
+            "presented",
+            "that presented",
+            "which presenting",
+            "presenting",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "If he _____ the warning signs earlier, he would not be in hospital now.",
+          opts: ["noticed", "had noticed", "would notice", "notices"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She _____ the promotion if she had not quit her job last year.",
+          opts: ["would get", "would have got", "will get", "got"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ you need any assistance, please do not hesitate to contact us.",
+          opts: ["Should", "Would", "Could", "Might"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ it not been for her help, the project would have failed completely.",
+          opts: ["Was", "Were", "Had", "Did"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The suspect is believed _____ the country before the arrest warrant was issued.",
+          opts: ["to leave", "to have left", "to be leaving", "leaving"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "She was made _____ the whole report from scratch by her supervisor.",
+          opts: ["rewrite", "to rewrite", "rewriting", "rewritten"],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He denied _____ the confidential document to the media.",
+          opts: ["to leak", "leaked", "leaking", "to have leaked"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "I regret _____ you that your application has been unsuccessful.",
+          opts: ["to inform", "informing", "inform", "having informed"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The report provides a _____ analysis of the current economic situation. (comprehend)",
+          opts: [
+            "comprehend",
+            "comprehension",
+            "comprehensive",
+            "comprehensively",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "Her _____ to the project was recognized at the annual awards ceremony. (contribute)",
+          opts: ["contribute", "contributor", "contribution", "contributing"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The experiment failed; _____, the researchers decided to redesign the entire process.",
+          opts: ["however", "therefore", "moreover", "consequently"],
+          ans: 3,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "_____ the limitations of the study, the findings are still significant.",
+          opts: ["Despite", "Although", "Even though", "In spite that"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The new policy is aimed _____ reducing carbon emissions by 2035.",
+          opts: ["at", "for", "to", "in"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The success of the project depends entirely _____ the team's cooperation.",
+          opts: ["in", "of", "on", "about"],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "By the time she retires, she _____ the company for over forty years.",
+          opts: [
+            "will work",
+            "will have worked",
+            "has worked",
+            "would have worked",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "The more funding the research team receives, _____ experiments they can conduct.",
+          opts: ["the more", "the most", "more", "most"],
+          ans: 0,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "He _____ for this company for five years when they finally offered him a promotion.",
+          opts: [
+            "worked",
+            "was working",
+            "had been working",
+            "has been working",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Ngữ Pháp Tổng Hợp",
+          q: "Only after she had read the contract carefully _____ to sign it.",
+          opts: [
+            "she agreed",
+            "did she agree",
+            "she did agree",
+            "had she agreed",
+          ],
+          ans: 1,
+        },
+      ];
+      const set6 = [
+        {
+          section: "Câu Tường Thuật Nâng Cao",
+          q: "She said: 'I have been waiting for two hours.' → She said she _____ for two hours.",
+          opts: [
+            "has been waiting",
+            "had been waiting",
+            "was waiting",
+            "waited",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Câu Tường Thuật Nâng Cao",
+          q: "The doctor told him: 'You must take this medicine twice a day.' → The doctor told him he _____ take that medicine twice a day.",
+          opts: ["must", "had to", "should", "ought to"],
+          ans: 1,
+        },
+        {
+          section: "Câu Tường Thuật Nâng Cao",
+          q: "She asked: 'Where have they gone?' → She asked where they _____.",
+          opts: ["have gone", "had gone", "went", "go"],
+          ans: 1,
+        },
+        {
+          section: "Động Từ Khuyết Thiếu Nâng Cao",
+          q: "He looks very pale. He _____ been working too hard lately.",
+          opts: ["should have", "must have", "can't have", "needn't have"],
+          ans: 1,
+        },
+        {
+          section: "Động Từ Khuyết Thiếu Nâng Cao",
+          q: "You _____ have told me earlier — I could have helped you.",
+          opts: ["would", "could", "should", "might"],
+          ans: 2,
+        },
+        {
+          section: "Động Từ Khuyết Thiếu Nâng Cao",
+          q: "She _____ be the manager — she's too young and inexperienced for the role.",
+          opts: ["can't", "mustn't", "shouldn't", "mightn't"],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện Hỗn Hợp",
+          q: "If he _____ the warning, he wouldn't be in this difficult situation now.",
+          opts: ["took", "had taken", "would take", "takes"],
+          ans: 1,
+        },
+        {
+          section: "Câu Điều Kiện Hỗn Hợp",
+          q: "She _____ the job if she had applied on time.",
+          opts: [
+            "would get",
+            "will have gotten",
+            "would have gotten",
+            "had gotten",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Đảo Ngữ Nâng Cao",
+          q: "Under no circumstances _____ leave the building without permission.",
+          opts: ["you should", "should you", "you must", "must you"],
+          ans: 1,
+        },
+        {
+          section: "Đảo Ngữ Nâng Cao",
+          q: "Seldom _____ such a talented musician perform here.",
+          opts: ["we have heard", "have we heard", "we heard", "heard we"],
+          ans: 1,
+        },
+        {
+          section: "Mệnh Đề Danh Ngữ",
+          q: "_____ the experiment was successful remains uncertain.",
+          opts: ["That", "Whether", "If", "What"],
+          ans: 1,
+        },
+        {
+          section: "Mệnh Đề Danh Ngữ",
+          q: "_____ she said at the press conference shocked the entire nation.",
+          opts: ["That", "What", "Which", "Whether"],
+          ans: 1,
+        },
+        {
+          section: "Cấu Trúc Nhấn Mạnh",
+          q: "It was _____ that caused the server to crash, not the software.",
+          opts: [
+            "hardware",
+            "the hardware",
+            "the hardware which",
+            "the hardware who",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Phân Từ Rút Gọn",
+          q: "_____ from the top of the hill, the city looked breathtaking at night.",
+          opts: ["Seen", "Seeing", "Having seen", "To see"],
+          ans: 0,
+        },
+        {
+          section: "Phân Từ Rút Gọn",
+          q: "_____ all the evidence carefully, the jury reached a unanimous verdict.",
+          opts: ["Considered", "Having considered", "To consider", "Consider"],
+          ans: 1,
+        },
+        {
+          section: "Câu Bị Động Phức",
+          q: "They are said _____ the project ahead of schedule.",
+          opts: [
+            "to complete",
+            "to have completed",
+            "completing",
+            "having completed",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Câu Bị Động Phức",
+          q: "The new drug is reported _____ significant side effects in clinical trials.",
+          opts: ["to cause", "to have caused", "causing", "having caused"],
+          ans: 1,
+        },
+        {
+          section: "Dạng Động Từ Phức",
+          q: "She is used to _____ in a fast-paced working environment.",
+          opts: ["work", "working", "have worked", "be working"],
+          ans: 1,
+        },
+        {
+          section: "Dạng Động Từ Phức",
+          q: "He would rather _____ at home than go to the crowded shopping mall.",
+          opts: ["stay", "staying", "to stay", "stayed"],
+          ans: 0,
+        },
+        {
+          section: "Dạng Động Từ Phức",
+          q: "I would prefer _____ by train rather than by plane.",
+          opts: ["travel", "travelling", "to travel", "to travelling"],
+          ans: 2,
+        },
+        {
+          section: "Từ Vựng Học Thuật",
+          q: "The researchers conducted a _____ study involving over 5,000 participants. (longitudinal)",
+          opts: ["long", "lengthy", "longitudinal", "longstanding"],
+          ans: 2,
+        },
+        {
+          section: "Từ Vựng Học Thuật",
+          q: "The findings _____ the need for further investigation into the topic.",
+          opts: ["underline", "undermine", "understate", "underestimate"],
+          ans: 0,
+        },
+        {
+          section: "Liên Kết Văn Bản",
+          q: "The initial results were promising; _____, the team decided to scale up the experiment.",
+          opts: ["nevertheless", "furthermore", "conversely", "accordingly"],
+          ans: 3,
+        },
+        {
+          section: "Liên Kết Văn Bản",
+          q: "The policy was introduced with good intentions; _____, it had numerous unintended consequences.",
+          opts: ["therefore", "however", "furthermore", "similarly"],
+          ans: 1,
+        },
+        {
+          section: "Giới Từ Cụm",
+          q: "The decision was made _____ extensive consultation with all relevant stakeholders.",
+          opts: ["following", "despite", "although", "without"],
+          ans: 0,
+        },
+        {
+          section: "Giới Từ Cụm",
+          q: "She resigned _____ disagreements with the new management team.",
+          opts: ["due to", "despite", "although", "since"],
+          ans: 0,
+        },
+        {
+          section: "Loại Từ Nâng Cao",
+          q: "His _____ behavior during the crisis earned him widespread respect. (exemplary)",
+          opts: ["exemplify", "exemplary", "exemplarily", "exemplification"],
+          ans: 1,
+        },
+        {
+          section: "Loại Từ Nâng Cao",
+          q: "The committee's decision was seen as both _____ and legally binding. (ambiguity)",
+          opts: ["ambiguous", "ambiguity", "ambiguously", "unambiguous"],
+          ans: 3,
+        },
+        {
+          section: "Thì Tương Lai Hoàn Thành",
+          q: "By the end of this year, she _____ at this university for a decade.",
+          opts: ["will teach", "is teaching", "will have taught", "has taught"],
+          ans: 2,
+        },
+        {
+          section: "Thì Tương Lai Tiếp Diễn",
+          q: "Don't call her at 3 p.m. — she _____ her online class then.",
+          opts: [
+            "will attend",
+            "will be attending",
+            "is going to attend",
+            "is attending",
+          ],
+          ans: 1,
+        },
+      ];
+      const set7 = [
+        {
+          section: "Đảo Ngữ & Cấu Trúc Đặc Biệt",
+          q: "Not until the investigation was completed _____ the full extent of the fraud.",
+          opts: [
+            "they revealed",
+            "did they reveal",
+            "they did reveal",
+            "had they revealed",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Đảo Ngữ & Cấu Trúc Đặc Biệt",
+          q: "Little _____ that his discovery would revolutionize modern medicine.",
+          opts: [
+            "he realized",
+            "did he realize",
+            "he did realize",
+            "had he realized",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Đảo Ngữ & Cấu Trúc Đặc Biệt",
+          q: "No sooner _____ than the alarm went off.",
+          opts: [
+            "had she fallen asleep",
+            "she had fallen asleep",
+            "she fell asleep",
+            "did she fall asleep",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện Đặc Biệt",
+          q: "_____ any problems arise during the installation, please contact our technical support team.",
+          opts: ["Should", "Would", "Could", "If"],
+          ans: 0,
+        },
+        {
+          section: "Câu Điều Kiện Đặc Biệt",
+          q: "_____ I known about the risks, I would never have agreed to the contract.",
+          opts: ["Should", "Had", "Were", "Did"],
+          ans: 1,
+        },
+        {
+          section: "Câu Điều Kiện Đặc Biệt",
+          q: "_____ it not for the generous funding, the research would have come to a halt.",
+          opts: ["Was", "Were", "Had", "Did"],
+          ans: 1,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ Rút Gọn",
+          q: "The proposal _____ at yesterday's board meeting was unanimously rejected.",
+          opts: [
+            "presented",
+            "presenting",
+            "which presented",
+            "that presenting",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Mệnh Đề Quan Hệ Rút Gọn",
+          q: "Students _____ to submit their assignments after the deadline will receive a penalty.",
+          opts: ["failed", "failing", "who failing", "that fail"],
+          ans: 1,
+        },
+        {
+          section: "Câu Bị Động Phức Tạp",
+          q: "The missing files are believed _____ by a former employee of the company.",
+          opts: [
+            "to delete",
+            "to be deleted",
+            "to have been deleted",
+            "being deleted",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Câu Bị Động Phức Tạp",
+          q: "Measures _____ to prevent similar incidents from occurring in the future.",
+          opts: [
+            "should take",
+            "should be taken",
+            "should have taken",
+            "should be taking",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Động Từ Khuyết Thiếu Bậc Cao",
+          q: "The presentation _____ better with more visual aids — the audience seemed confused.",
+          opts: ["could go", "could have gone", "should go", "should be going"],
+          ans: 1,
+        },
+        {
+          section: "Động Từ Khuyết Thiếu Bậc Cao",
+          q: "You _____ mentioned the budget limitations earlier — now it's too late to adjust the plan.",
+          opts: ["should have", "must have", "would have", "could have"],
+          ans: 0,
+        },
+        {
+          section: "Phân Từ & Danh Động Từ",
+          q: "_____ the complexity of the situation, the team remained remarkably calm.",
+          opts: ["Despite", "Given", "Although", "Regardless"],
+          ans: 1,
+        },
+        {
+          section: "Phân Từ & Danh Động Từ",
+          q: "The professor, _____ by his students' progress, decided to extend the research program.",
+          opts: [
+            "encouraging",
+            "encouraged",
+            "to encourage",
+            "having encouraged",
+          ],
+          ans: 1,
+        },
+        {
+          section: "Cấu Trúc So Sánh Nâng Cao",
+          q: "The situation turned out to be far more _____ than the initial assessment had suggested.",
+          opts: ["complex", "complexly", "complexer", "more complex"],
+          ans: 0,
+        },
+        {
+          section: "Cấu Trúc So Sánh Nâng Cao",
+          q: "Her second novel was nowhere near _____ her debut, which had received critical acclaim.",
+          opts: [
+            "as impressive as",
+            "so impressive than",
+            "more impressive as",
+            "as impressive than",
+          ],
+          ans: 0,
+        },
+        {
+          section: "Từ Vựng Văn Phong Trang Trọng",
+          q: "The committee is yet to _____ a final decision on the proposed amendments.",
+          opts: ["make", "reach", "arrive", "come to"],
+          ans: 0,
+        },
+        {
+          section: "Từ Vựng Văn Phong Trang Trọng",
+          q: "The minister _____ the importance of international cooperation in addressing climate change.",
+          opts: ["stressed", "pressured", "forced", "pushed"],
+          ans: 0,
+        },
+        {
+          section: "Bẫy Ngữ Pháp",
+          q: "The data _____ inconclusive, prompting the scientists to repeat the experiment.",
+          opts: ["was", "were", "is", "are"],
+          ans: 1,
+        },
+        {
+          section: "Bẫy Ngữ Pháp",
+          q: "Each of the solutions _____ its own advantages and disadvantages.",
+          opts: ["have", "has", "are having", "had"],
+          ans: 1,
+        },
+        {
+          section: "Bẫy Ngữ Pháp",
+          q: "The committee _____ on the new proposal when the power went out.",
+          opts: ["were voting", "was voting", "voted", "have voted"],
+          ans: 1,
+        },
+        {
+          section: "Loại Từ Học Thuật",
+          q: "The study revealed a significant _____ between the two variables. (correlate)",
+          opts: ["correlate", "correlation", "correlating", "correlated"],
+          ans: 1,
+        },
+        {
+          section: "Loại Từ Học Thuật",
+          q: "Researchers have struggled to find a _____ explanation for the anomaly. (satisfy)",
+          opts: ["satisfy", "satisfying", "satisfactory", "satisfactorily"],
+          ans: 2,
+        },
+        {
+          section: "Liên Kết Học Thuật",
+          q: "The initial hypothesis was supported by the data; _____, a number of outliers warranted further examination.",
+          opts: ["consequently", "nonetheless", "therefore", "in addition"],
+          ans: 1,
+        },
+        {
+          section: "Liên Kết Học Thuật",
+          q: "The new treatment proved effective _____ its significant side effects.",
+          opts: ["despite", "although", "in spite", "even though"],
+          ans: 0,
+        },
+        {
+          section: "Giới Từ Nâng Cao",
+          q: "The board approved the merger _____ strong opposition from several shareholders.",
+          opts: ["in spite of", "because of", "due to", "owing from"],
+          ans: 0,
+        },
+        {
+          section: "Thì Tương Lai Hoàn Thành Tiếp Diễn",
+          q: "By the time you finish reading this report, I _____ on the solution for over six hours.",
+          opts: [
+            "will work",
+            "will have worked",
+            "will be working",
+            "will have been working",
+          ],
+          ans: 3,
+        },
+        {
+          section: "Thì Quá Khứ Hoàn Thành Tiếp Diễn",
+          q: "She looked exhausted because she _____ for the marathon for months without proper rest.",
+          opts: [
+            "trained",
+            "was training",
+            "had been training",
+            "has been training",
+          ],
+          ans: 2,
+        },
+        {
+          section: "Mệnh Đề Danh Ngữ Phức",
+          q: "It remains _____ whether the proposed legislation will achieve its intended goals.",
+          opts: ["doubtful", "doubting", "doubt", "doubted"],
+          ans: 0,
+        },
+        {
+          section: "Cú Pháp Phức Tạp",
+          q: "The extent _____ the new policy will affect small businesses is still unclear.",
+          opts: ["which", "that", "to which", "in which"],
+          ans: 2,
+        },
+      ];
+const set8 = [
+  { section: "Câu Tường Thuật", q: "He said: 'I can swim very well.' → He said that he _____ swim very well.", opts: ["can","could","would","should"], ans: 1 },
+  { section: "Câu Tường Thuật", q: "She told me: 'I went to the cinema yesterday.' → She told me she _____ to the cinema the day before.", opts: ["goes","went","had gone","has gone"], ans: 2 },
+  { section: "Câu Tường Thuật", q: "They asked: 'Are you coming to the party?' → They asked _____ I was coming to the party.", opts: ["that","if","what","which"], ans: 1 },
+  { section: "Câu Tường Thuật", q: "He advised me: 'You should see a doctor.' → He advised me _____ a doctor.", opts: ["see","seeing","to see","that I see"], ans: 2 },
+  { section: "Câu Tường Thuật", q: "She said: 'I have been waiting for an hour.' → She said she _____ for an hour.", opts: ["has been waiting","had been waiting","was waiting","has waited"], ans: 1 },
+  { section: "Động Từ Khuyết Thiếu", q: "You look pale. You _____ eaten something bad.", opts: ["must have","should have","could have","might have"], ans: 0 },
+  { section: "Động Từ Khuyết Thiếu", q: "I _____ go to the gym today — it's not compulsory.", opts: ["mustn't","don't have to","shouldn't","can't"], ans: 1 },
+  { section: "Động Từ Khuyết Thiếu", q: "She _____ be at the office right now — I just saw her at the market.", opts: ["can't","mustn't","shouldn't","wouldn't"], ans: 0 },
+  { section: "Động Từ Khuyết Thiếu", q: "You _____ worn a coat — it was freezing outside!", opts: ["should have","must have","could","had to"], ans: 0 },
+  { section: "Động Từ Khuyết Thiếu", q: "He _____ have forgotten — it was marked in his diary.", opts: ["can't","shouldn't","mustn't","wouldn't"], ans: 0 },
+  { section: "Phrasal Verbs", q: "She _____ her application for the scholarship last week.", opts: ["put in","put on","put off","put out"], ans: 0 },
+  { section: "Phrasal Verbs", q: "The meeting was _____ due to the manager's illness.", opts: ["called off","called on","called out","called up"], ans: 0 },
+  { section: "Phrasal Verbs", q: "He _____ his grandfather — both are very stubborn.", opts: ["takes after","takes up","takes over","takes in"], ans: 0 },
+  { section: "Phrasal Verbs", q: "Can you _____ this word in the dictionary?", opts: ["look for","look up","look after","look out"], ans: 1 },
+  { section: "Phrasal Verbs", q: "They decided to _____ the project because of budget cuts.", opts: ["drop out","drop off","call off","give up"], ans: 3 },
+  { section: "Câu Bị Động", q: "The contract _____ by both parties before the deal was finalized.", opts: ["signed","was signed","has signed","had signing"], ans: 1 },
+  { section: "Câu Bị Động", q: "New safety regulations _____ next month.", opts: ["will introduce","will be introduced","are introducing","introduce"], ans: 1 },
+  { section: "Câu Bị Động", q: "It _____ that air pollution is responsible for thousands of deaths annually.", opts: ["believes","is believed","believed","was believing"], ans: 1 },
+  { section: "Câu So Sánh", q: "The traffic in this city is _____ I expected.", opts: ["worse than","worst than","more bad than","as worse as"], ans: 0 },
+  { section: "Câu So Sánh", q: "This product is _____ as the more expensive one.", opts: ["as effective","so effective","equally effective","as effectively"], ans: 0 },
+  { section: "Câu Điều Kiện", q: "If she _____ harder at school, she might have got into a better university.", opts: ["studies","studied","had studied","would study"], ans: 2 },
+  { section: "Câu Điều Kiện", q: "_____ you need further information, feel free to email us.", opts: ["Would","Should","Could","Had"], ans: 1 },
+  { section: "Mệnh Đề Quan Hệ", q: "The town _____ I grew up has changed beyond recognition.", opts: ["which","that","where","when"], ans: 2 },
+  { section: "Mệnh Đề Quan Hệ", q: "The woman _____ bag was stolen called the police immediately.", opts: ["who","which","whose","whom"], ans: 2 },
+  { section: "Liên Từ & Giới Từ", q: "She kept smiling _____ she was very nervous.", opts: ["despite","although","because of","in spite"], ans: 1 },
+  { section: "Liên Từ & Giới Từ", q: "The flight was cancelled _____ the severe thunderstorm.", opts: ["despite","although","owing to","in spite"], ans: 2 },
+  { section: "Loại Từ", q: "His _____ in the negotiation led to a successful outcome. (flexible)", opts: ["flexible","flexibly","flexibility","flexibilize"], ans: 2 },
+  { section: "Loại Từ", q: "The manager praised her for her _____ work. (exception)", opts: ["exception","except","exceptional","exceptionally"], ans: 2 },
+  { section: "Thì Phức Hợp", q: "By the time he retires, he _____ for this company for 35 years.", opts: ["will work","has worked","will have worked","would work"], ans: 2 },
+  { section: "Thì Phức Hợp", q: "She _____ for three hours before she finally solved the problem.", opts: ["worked","was working","has been working","had been working"], ans: 3 },
+];
+
+const set9 = [
+  { section: "Câu Tường Thuật", q: "The teacher said: 'Open your books.' → The teacher told us _____ our books.", opts: ["open","opening","to open","that open"], ans: 2 },
+  { section: "Câu Tường Thuật", q: "He said: 'I will finish the report by tomorrow.' → He said he _____ finish the report by the next day.", opts: ["will","would","shall","should"], ans: 1 },
+  { section: "Câu Tường Thuật", q: "She asked him: 'Where do you live?' → She asked him where he _____.", opts: ["lives","lived","does live","did live"], ans: 1 },
+  { section: "Câu Tường Thuật", q: "They announced: 'The concert has been cancelled.' → They announced that the concert _____.", opts: ["has been cancelled","had been cancelled","was cancelled","were cancelled"], ans: 1 },
+  { section: "Câu Tường Thuật", q: "He warned her: 'Don't sign anything without reading it.' → He warned her _____ anything without reading it.", opts: ["not sign","not signing","not to sign","to not sign"], ans: 2 },
+  { section: "Động Từ Khuyết Thiếu", q: "You _____ reserve a table — the restaurant is always empty on weekdays.", opts: ["mustn't","don't have to","shouldn't","can't"], ans: 1 },
+  { section: "Động Từ Khuyết Thiếu", q: "The lights are still on. He _____ left the office yet.", opts: ["must not have","can't have","shouldn't have","wouldn't have"], ans: 1 },
+  { section: "Động Từ Khuyết Thiếu", q: "She was the only one with a key, so she _____ taken the documents.", opts: ["can","should","must have","might"], ans: 2 },
+  { section: "Động Từ Khuyết Thiếu", q: "You _____ told me it was a surprise party — now she knows!", opts: ["shouldn't have","mustn't have","couldn't have","needn't have"], ans: 0 },
+  { section: "Động Từ Khuyết Thiếu", q: "We _____ leave now if we want to catch the last train.", opts: ["must","should","would","need"], ans: 0 },
+  { section: "Phrasal Verbs", q: "I need to _____ some energy before the afternoon meeting.", opts: ["build up","build in","build on","build off"], ans: 0 },
+  { section: "Phrasal Verbs", q: "She _____ the difficult question by changing the subject.", opts: ["got around","got over","got through","got into"], ans: 0 },
+  { section: "Phrasal Verbs", q: "It took her months to _____ the shock of losing her job.", opts: ["get over","get through","get away","get on"], ans: 0 },
+  { section: "Phrasal Verbs", q: "The company _____ twenty new staff members last year.", opts: ["took on","took up","took off","took in"], ans: 0 },
+  { section: "Phrasal Verbs", q: "Please _____ the form and submit it at the reception desk.", opts: ["fill in","fill up","fill out","fill on"], ans: 0 },
+  { section: "Câu Bị Động", q: "The missing child _____ safe by police officers early this morning.", opts: ["found","was found","has found","is found"], ans: 1 },
+  { section: "Câu Bị Động", q: "A new hospital _____ in the south of the city next year.", opts: ["will build","will be built","is going to build","builds"], ans: 1 },
+  { section: "Câu Bị Động", q: "The results of the survey _____ next week at the conference.", opts: ["present","are presented","will be presented","are going to present"], ans: 2 },
+  { section: "Câu So Sánh", q: "The _____ you eat, the healthier you will feel.", opts: ["less","fewer","little","least"], ans: 0 },
+  { section: "Câu So Sánh", q: "Her performance was _____ better than last time.", opts: ["far","much more","very","too much"], ans: 0 },
+  { section: "Câu Điều Kiện", q: "If I _____ you, I would apologize to him right away.", opts: ["am","was","were","had been"], ans: 2 },
+  { section: "Câu Điều Kiện", q: "We _____ the deadline if the team had cooperated more.", opts: ["would meet","would have met","will meet","had met"], ans: 1 },
+  { section: "Mệnh Đề Quan Hệ", q: "The book _____ I borrowed from the library was incredibly inspiring.", opts: ["who","whom","which","what"], ans: 2 },
+  { section: "Mệnh Đề Quan Hệ", q: "2019 was the year _____ everything changed for our family.", opts: ["which","when","where","that"], ans: 1 },
+  { section: "Liên Từ & Giới Từ", q: "He succeeded _____ all the obstacles he faced.", opts: ["despite","although","because","even"], ans: 0 },
+  { section: "Liên Từ & Giới Từ", q: "She trained hard _____ she could compete at the national level.", opts: ["although","unless","so that","despite"], ans: 2 },
+  { section: "Loại Từ", q: "The documentary gave a very _____ account of the war. (move)", opts: ["move","mover","moved","moving"], ans: 3 },
+  { section: "Loại Từ", q: "His _____ to the team cannot be overstated. (contribute)", opts: ["contribute","contribution","contributing","contributive"], ans: 1 },
+  { section: "Thì Phức Hợp", q: "Don't call me at 8 p.m. — I _____ the children to bed at that time.", opts: ["put","will put","am putting","will be putting"], ans: 3 },
+  { section: "Thì Phức Hợp", q: "I realized I _____ my wallet at home only when I reached the cashier.", opts: ["left","have left","had left","was leaving"], ans: 2 },
+];
+      const allSets = [set1, set2, set3, set4, set5, set6, set7, set8, set9];
+      const setLabels = [
+        "Đề 1 – Cơ Bản",
+        "Đề 2 – Nâng Cao",
+        "Đề 3 – Khó Hơn",
+        "Đề 4 – Nâng Cao+",
+        "Đề 5 – Thử Thách",
+        "Đề 6 – Chuyên Sâu",
+        "Đề 7 – Siêu Khó",
+        "Đề 8 – Mẹo & Bẫy",
+        "Đề 9 – Tổng Hợp",
+      ];
+      const diffClasses = [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+      ];
+
+      let currentSetIdx = 0,
+        questions = set1,
+        answered = {},
+        timerInterval = null,
+        secondsLeft = 1800,
+        submitted = false,
+        startTime = Date.now();
+
+      function selectSet(idx) {
+        if (submitted) return;
+        currentSetIdx = idx;
+        questions = allSets[idx];
+        document
+          .querySelectorAll(".set-tab")
+          .forEach((t, i) => t.classList.toggle("active", i === idx));
+        answered = {};
+        buildQuestions();
+        updateProgress();
+      }
+      function buildQuestions() {
+        const c = document.getElementById("questions-container");
+        c.innerHTML = "";
+        let cs = "";
+        questions.forEach((q, i) => {
+          if (q.section !== cs) {
+            cs = q.section;
+            const l = document.createElement("div");
+            l.className = "section-label";
+            l.textContent = `📌 ${cs}`;
+            c.appendChild(l);
+          }
+          const card = document.createElement("div");
+          card.className = "q-card";
+          card.id = `card-${i}`;
+          const L = ["A", "B", "C", "D"];
+          const oh = q.opts
+            .map(
+              (o, j) =>
+                `<label class="opt-label" id="opt-${i}-${j}"><input type="radio" name="q${i}" value="${j}" onchange="onAnswer(${i},${j})"><span class="opt-letter">${L[j]}</span><span>${o}</span></label>`,
+            )
+            .join("");
+          card.innerHTML = `<div class="q-num">Câu ${i + 1} / 30</div><div class="q-text">${q.q}</div><div class="opts">${oh}</div>`;
+          c.appendChild(card);
+        });
+      }
+      function onAnswer(qi, oi) {
+        if (submitted) return;
+        answered[qi] = oi;
+        questions[qi].opts.forEach((_, j) => {
+          document
+            .getElementById(`opt-${qi}-${j}`)
+            .classList.toggle("selected", j === oi);
+        });
+        updateProgress();
+      }
+      function updateProgress() {
+        const n = Object.keys(answered).length;
+        document.getElementById("answered-count").textContent =
+          `Đã trả lời: ${n} / 30`;
+        document.getElementById("progress-fill").style.width =
+          (n / 30) * 100 + "%";
+      }
+      function startTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+          secondsLeft--;
+          const m = String(Math.floor(secondsLeft / 60)).padStart(2, "0"),
+            s = String(secondsLeft % 60).padStart(2, "0"),
+            el = document.getElementById("timer");
+          el.textContent = `${m}:${s}`;
+          el.className = "timer";
+          if (secondsLeft <= 300) el.classList.add("warn");
+          if (secondsLeft <= 60) el.classList.add("danger");
+          if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            submitTest();
+          }
+        }, 1000);
+      }
+      function submitTest() {
+        if (submitted) return;
+        submitted = true;
+        clearInterval(timerInterval);
+        document
+          .querySelectorAll(".set-tab")
+          .forEach((t) => (t.style.pointerEvents = "none"));
+        const el = Math.floor((Date.now() - startTime) / 1000),
+          em = String(Math.floor(el / 60)).padStart(2, "0"),
+          es = String(el % 60).padStart(2, "0");
+        let correct = 0;
+        questions.forEach((q, i) => {
+          if (answered[i] === q.ans) correct++;
+          q.opts.forEach((_, j) => {
+            const l = document.getElementById(`opt-${i}-${j}`);
+            if (j === q.ans) l.classList.add("correct");
+            else if (answered[i] === j) l.classList.add("wrong");
+            l.style.cursor = "default";
+          });
+        });
+        document.getElementById("test-screen").style.display = "none";
+        document.getElementById("result-screen").style.display = "block";
+        document.getElementById("big-score").textContent = `${correct}/30`;
+        document.getElementById("r-correct").textContent = correct;
+        document.getElementById("r-wrong").textContent = 30 - correct;
+        document.getElementById("r-time").textContent = `${em}:${es}`;
+        const b = document.getElementById("diff-badge");
+        b.textContent = setLabels[currentSetIdx];
+        b.className = `difficulty-badge ${diffClasses[currentSetIdx]}`;
+        const pct = Math.round((correct / 30) * 100);
+        let label, sub;
+        if (pct >= 90) {
+          label = "🏆 Xuất Sắc!";
+          sub = "Bạn nắm rất vững kiến thức!";
+        } else if (pct >= 70) {
+          label = "🎉 Khá Giỏi!";
+          sub = "Cần ôn thêm một số phần nhé.";
+        } else if (pct >= 50) {
+          label = "📚 Trung Bình";
+          sub = "Hãy ôn tập thêm để cải thiện!";
+        } else {
+          label = "💪 Cố Gắng Hơn";
+          sub = "Đừng nản lòng, ôn lại từ đầu nhé!";
+        }
+        document.getElementById("result-label").textContent = label;
+        document.getElementById("result-sub").textContent = sub;
+        const rl = document.getElementById("review-list");
+        rl.innerHTML = "";
+        const L = ["A", "B", "C", "D"];
+        questions.forEach((q, i) => {
+          const ok = answered[i] === q.ans,
+            d = document.createElement("div");
+          d.className = `review-item ${ok ? "ok" : "err"}`;
+          const ya =
+            answered[i] !== undefined
+              ? `${L[answered[i]]}. ${q.opts[answered[i]]}`
+              : "Chưa trả lời";
+          d.innerHTML = `<div class="ri-q">Câu ${i + 1}: ${q.q}</div>${!ok ? `<div class="ri-your">✗ Bạn chọn: ${ya}</div>` : ""}<div class="ri-correct">✓ Đáp án: ${L[q.ans]}. ${q.opts[q.ans]}</div>`;
+          rl.appendChild(d);
+        });
+      }
+      function toggleReview() {
+        const r = document.getElementById("review");
+        r.style.display = r.style.display === "none" ? "block" : "none";
+      }
+      function retryTest() {
+        answered = {};
+        submitted = false;
+        secondsLeft = 1800;
+        startTime = Date.now();
+        document.getElementById("result-screen").style.display = "none";
+        document.getElementById("test-screen").style.display = "block";
+        document.getElementById("review").style.display = "none";
+        document
+          .querySelectorAll(".set-tab")
+          .forEach((t) => (t.style.pointerEvents = ""));
+        buildQuestions();
+        updateProgress();
+        startTimer();
+      }
+      function clearAnswers() {
+        answered = {};
+        buildQuestions();
+        updateProgress();
+      }
+
+      buildQuestions();
+      startTimer();
+    </script>
+  </body>
+</html>
